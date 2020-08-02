@@ -1,0 +1,5 @@
+Books/db.sqlite3
+Pipfile
+Pipfile.lock
+Books/Books/__pycache__/
+Books/Books/.env
