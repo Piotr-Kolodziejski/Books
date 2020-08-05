@@ -29,10 +29,11 @@ def get_date(book):
     return book['published_date']
 
 
-def PublishedDate(request):
+def SortAndFilter(request):
     sort_query = request.GET.get('sort')
     filter_date_query = request.GET.get('published_date')
     filter_authors_query = request.GET.get('author')
+    print(books_list[1])
     if filter_date_query:
         filtered_date_books_list = []
         for book in books_list:
@@ -50,3 +51,7 @@ def PublishedDate(request):
                 filtered_authors_books_list.append(book)
         return HttpResponse(json.dumps(filtered_authors_books_list, indent=2), content_type="application/json")
     return HttpResponse(json.dumps(books_list, indent=2), content_type="application/json")
+
+def BookID(request, book_id):
+    return HttpResponse(json.dumps(books_list[book_id], indent=2), content_type="application/json")
+    
