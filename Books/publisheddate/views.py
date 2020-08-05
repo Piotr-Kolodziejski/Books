@@ -24,13 +24,20 @@ for i in data["items"]:
                        'categories': categories, 'average_rating': average_rating,
                        'ratings_count': ratings_count, 'thumbnail': thumbnail, })
 
+def get_date(book):
+    return book['published_date']
 
 def PublishedDate(request):
-    query = request.GET.get('published_date')
-    if query:
+    sort_query = request.GET.get('sort')
+    filter_query = request.GET.get('published_date')
+    if filter_query:
         filtered_books_list = []
         for book in books_list:
-            if book['published_date'].split('-')[0] == query:
+            if book['published_date'].split('-')[0] == filter_query:
                 filtered_books_list.append(book)
         return HttpResponse(json.dumps(filtered_books_list, indent=2), content_type="application/json")
+    if sort_query == 'published_date':
+        return HttpResponse(json.dumps(sorted(books_list, key=get_date), indent=2), content_type="application/json")
+    elif sort_query == '-published_date':
+        return HttpResponse(json.dumps(sorted(books_list, key=get_date, reverse=True), indent=2), content_type="application/json")
     return HttpResponse(json.dumps(books_list, indent=2), content_type="application/json")
