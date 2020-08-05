@@ -6,7 +6,7 @@ import requests
 # Create your views here.
 
 response = requests.get(
-        'https://www.googleapis.com/books/v1/volumes?q=Hobbit')
+    'https://www.googleapis.com/books/v1/volumes?q=Hobbit')
 
 books_list = []
 data = json.loads(response.text)
@@ -20,13 +20,17 @@ for i in data["items"]:
     ratings_count = volumeInfo.get("ratingsCount")
     image_links = volumeInfo["imageLinks"]
     thumbnail = image_links["thumbnail"]
-    books_list.append(json.dumps({'title': title, 'authors': authors, 'published_date': published_date,
-                                    'categories': categories, 'average_rating': average_rating,
-                                    'ratings_count': ratings_count, 'thumbnail': thumbnail, }, indent = 2))
-    
-books = {}
-for i in range(10):
-    books[i] = json.loads(books_list[i])
+    books_list.append({'title': title, 'authors': authors, 'published_date': published_date,
+                       'categories': categories, 'average_rating': average_rating,
+                       'ratings_count': ratings_count, 'thumbnail': thumbnail, })
+
 
 def PublishedDate(request):
-    return HttpResponse(json.dumps(books, indent = 2), content_type="application/json")
+    query = request.GET.get('published_date')
+    if query:
+        filtered_books_list = []
+        for book in books_list:
+            if book['published_date'].split('-')[0] == query:
+                filtered_books_list.append(book)
+        return HttpResponse(json.dumps(filtered_books_list, indent=2), content_type="application/json")
+    return HttpResponse(json.dumps(books_list, indent=2), content_type="application/json")
