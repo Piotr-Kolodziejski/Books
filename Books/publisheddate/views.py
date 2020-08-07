@@ -4,31 +4,29 @@ import requests
 
 # Create your views here.
 
-response = requests.get(
-    'https://www.googleapis.com/books/v1/volumes?q=Hobbit')
-
-books_list = []
-data = json.loads(response.text)
-for i in data["items"]:
-    volumeInfo = i["volumeInfo"]
-    title = volumeInfo["title"]
-    authors = volumeInfo["authors"]
-    published_date = volumeInfo["publishedDate"]
-    categories = volumeInfo.get("categories")
-    average_rating = volumeInfo.get("averageRating")
-    ratings_count = volumeInfo.get("ratingsCount")
-    image_links = volumeInfo["imageLinks"]
-    thumbnail = image_links["thumbnail"]
-    books_list.append({'title': title, 'authors': authors, 'published_date': published_date,
-                       'categories': categories, 'average_rating': average_rating,
-                       'ratings_count': ratings_count, 'thumbnail': thumbnail, })
-
-
 def get_date(book):
     return book['published_date']
 
 
 def SortAndFilter(request):
+    response = requests.get(
+        'https://www.googleapis.com/books/v1/volumes?q=Hobbit')
+
+    books_list = []
+    data = json.loads(response.text)
+    for i in data["items"]:
+        volumeInfo = i["volumeInfo"]
+        title = volumeInfo["title"]
+        authors = volumeInfo["authors"]
+        published_date = volumeInfo["publishedDate"]
+        categories = volumeInfo.get("categories")
+        average_rating = volumeInfo.get("averageRating")
+        ratings_count = volumeInfo.get("ratingsCount")
+        image_links = volumeInfo["imageLinks"]
+        thumbnail = image_links["thumbnail"]
+        books_list.append({'title': title, 'authors': authors, 'published_date': published_date,
+                           'categories': categories, 'average_rating': average_rating,
+                           'ratings_count': ratings_count, 'thumbnail': thumbnail, })
     sort_query = request.GET.get('sort')
     filter_date_query = request.GET.get('published_date')
     filter_authors_query = request.GET.get('author')

@@ -1,8 +1,7 @@
-from django.http import HttpResponse, HttpRequest
+from django.http import HttpResponse
 import json
 import requests
 from dbpost.models import Authors, Book
-from django.views.decorators.csrf import ensure_csrf_cookie
 
 # Create your views here.
 
