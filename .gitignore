@@ -1,5 +1,4 @@
 Books/db.sqlite3
-Pipfile.lock
 Books/Books/__pycache__/
 Books/Books/.env
 Books/publisheddate/__pycache__/__init__.cpython-38.pyc
