@@ -1,1 +1,1 @@
-web: python Books/manage.py runserver https://booksort.herokuapp.com$PORT
+web: python Books/manage.py runserver 0.0.0.0:8000
