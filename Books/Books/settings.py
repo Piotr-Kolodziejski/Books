@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('KEY', 'default_value')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['booksort.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
