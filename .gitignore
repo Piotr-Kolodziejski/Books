@@ -1,6 +1,5 @@
 Books/db.sqlite3
 Books/Books/__pycache__/
 Books/Books/.env
-Books/publisheddate/__pycache__/__init__.cpython-38.pyc
-Books/publisheddate/__pycache__/urls.cpython-38.pyc
-Books/publisheddate/__pycache__/views.cpython-38.pyc
+Books/publisheddate/__pycache__/
+Books/publisheddate/migrations/
