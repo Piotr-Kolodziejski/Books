@@ -11,6 +11,7 @@ requests = "*"
 python-dotenv = "*"
 pandas = "*"
 gunicorn = "*"
+dj-database-url = "*"
 
 [requires]
 python_version = "3.8"
