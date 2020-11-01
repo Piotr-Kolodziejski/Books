@@ -1,4 +1,4 @@
-Books/db.sqlite3
+db.sqlite3
 Books/Books/__pycache__/
 Books/Books/.env
 Books/publisheddate/__pycache__/
